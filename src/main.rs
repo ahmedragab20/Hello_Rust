@@ -1,3 +1,5 @@
+#[allow(dead_code)]
+
 enum ExamResult {
     Pass(bool),
     Fail(bool),
@@ -11,6 +13,7 @@ impl ExamResult {
         }
     }
 
+    #[allow(dead_code)]
     fn is_fail(&self) -> bool {
         match &self {
             ExamResult::Pass(_) => false,
