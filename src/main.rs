@@ -1,44 +1,29 @@
-use std::io;
-use rand::Rng;
+enum ExamResult {
+    Pass(bool),
+    Fail(bool),
+}
 
-fn main() {
-    let secret_number: i32 = rand::thread_rng().gen_range(1, 101);
-    println!("The secret number is: {secret_number}");
-    
-    println!("__________________________________________________________________________________");
-
-    println!("Enter your name: ");
-    let mut name: String = String::new();
-    io::stdin()
-        .read_line(&mut name)
-        .expect("Failed to read line");
-
-    fn guess(mut name: String, secret_number: i32, trials: i32) {
-    
-        name = name.trim().to_string();
-    
-        println!("Enter your guess number: ");
-        let mut guess_number = String::new();
-
-        io::stdin()
-            .read_line(&mut guess_number)
-            .expect("Failed to read line");
-    
-        println!("Hey {name}, you guessed: {guess_number}");
-
-        if guess_number.trim().to_string() == secret_number.to_string() {
-            println!("🥳 {name}, you win!");
-            return;
-        } else {
-            if trials < 5 {
-                println!("🙃 Na Na.. try again! ({trials})");
-                guess(name, secret_number, trials + 1);
-            } else {
-                println!("😭 {name}, you lose! all trials are used, the secret number is {secret_number}, you can try again later!");
-            }
+impl ExamResult {
+    fn is_pass(&self) -> bool {
+        match &self {
+            ExamResult::Pass(_) => true,
+            ExamResult::Fail(_) => false,
         }
     }
 
-    guess(name, secret_number, 1);
+    fn is_fail(&self) -> bool {
+        match &self {
+            ExamResult::Pass(_) => false,
+            ExamResult::Fail(_) => true,
+        }
+    }
+}
+fn main() {
+    let exam_result = ExamResult::Pass(true);
 
+    if exam_result.is_pass() {
+        println!("You have passed the exam");
+    } else {
+        println!("You have failed the exam");
+    }
 }
