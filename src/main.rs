@@ -1,5 +1,5 @@
 mod helpers;
-use helpers::{say_hi, math::add};
+use helpers::{say_hi, math::add, math::tests::test_add};
 fn main() {
     // sick..
     say_hi();
