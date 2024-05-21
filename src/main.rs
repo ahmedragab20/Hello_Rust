@@ -1,7 +1,8 @@
 mod chapter8;
+use chapter8::vectos::{vectors_sample, vectors_sample2};
 fn main() {
-    chapter8::vectors_sample();
-    let mut v: Vec<i32> = chapter8::vectors_sample2();
+    vectors_sample();
+    let mut v: Vec<i32> = vectors_sample2();
     println!("v: {:?}", v);
     {
         let v_copy = &mut v;
@@ -16,4 +17,6 @@ fn main() {
     }
 
     println!("v_2: {:?}", v);
+
+    chapter8::hash_map::hash_map_sample();
 }
