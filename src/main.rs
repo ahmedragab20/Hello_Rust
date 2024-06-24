@@ -1,67 +1,27 @@
-trait Summary {
-    fn summarize(&self) -> String;
-}
+use std::fmt::Display;
 
-trait Firend {
-    fn add_friend(&self) -> String;
-}
-
-struct Person {
-    name: String,
-    age: u16,
-}
-
-impl Firend for Person {
-    fn add_friend(&self) -> String {
-        return "I added you as my Homie Friend".to_string();
+fn longest<'a, T: Display>(x: &'a str, y: &'a str, ann: T) -> &'a str {
+    println!("Announcement! {}", ann);
+    if x.len() > y.len() {
+        x
+    } else {
+        y
     }
 }
-
-struct NewsArticle {
-    headling: String,
-    location: String,
-    author: String,
-    content: String,
+trait MyTrait {
+    fn love(&self);
 }
-
-impl Summary for NewsArticle {
-    fn summarize(&self) -> String {
-        return "News Article summary of the content".to_string();
+struct MyStruct;
+impl MyTrait for MyStruct {
+    fn love(&self) {
+        println!("i love you 🥹")
     }
 }
-
-struct Tweet {
-    username: String,
-    content: String,
-    reply: bool,
-    retweet: Option<bool>,
-}
-
-impl Summary for Tweet {
-    fn summarize(&self) -> String {
-        let content = &self.content;
-        return "Tweet summary of the content".to_string() + " - " + content;
-    }
-}
-
-fn notify<T: Summary, F: Firend>(item: T, friend: F) {
-    friend.add_friend();
-    println!("Summary is: {}", item.summarize())
-}
-
 fn main() {
-    let tweet = Tweet {
-        username: "ahmed09".to_string(),
-        content: "tweet content".to_string(),
-        reply: true,
-        retweet: None,
-    };
-
-    let person = Person {
-        name: "Zainab Ahmed Ragab".to_string(),
-        age: 10,
-    };
-
-    println!("{}", tweet.summarize());
-    notify(tweet, person);
+    let string1 = "Hello";
+    let string2 = "world!";
+    let result = longest(string1, string2, 42); // 42 is of type i32, which implements Display
+    let structy = MyStruct {};
+    structy.love();
+    println!("The longer string is: {}", result);
 }
