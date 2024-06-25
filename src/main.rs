@@ -10,5 +10,5 @@ fn get_full_name(first: &str, last: &str) -> String {
 fn main() {
     let full_name: String = get_full_name("ahmed", "ragab");
 
-    println!("full name: {full_name}")
+    println!("full name: {full_name}");
 }
