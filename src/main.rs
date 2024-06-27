@@ -1,14 +1,28 @@
-fn get_full_name(first: &str, last: &str) -> String {
-    let mut result: String = String::new();
-    result.push_str(first);
-    result.push_str(" ");
-    result.push_str(last);
+use std::ops::Deref;
 
-    return result;
+struct SBox<T>(T);
+
+impl<T> Deref for SBox<T> {
+    type Target = T;
+    fn deref(&self) -> &T {
+        // self -> i32 -> 4 -> let num
+        &self.0
+    }
+}
+
+fn say_hi(name: &str) {
+    println!("Hi, {name}");
 }
 
 fn main() {
-    let full_name: String = get_full_name("ahmed", "ragab");
+    // let x = 4;
+    // let y = Box::new(x);
 
-    println!("full name: {full_name}");
+    // let num = SBox(x);
+
+    // assert_eq!(4, x);
+    // assert_eq!(4, *num);
+
+    let name = SBox(String::from("Ahmed"));
+    say_hi(&name)
 }
