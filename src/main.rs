@@ -23,6 +23,6 @@ fn main() {
     // assert_eq!(4, x);
     // assert_eq!(4, *num);
 
-    let name = SBox(String::from("Ahmed"));
+    let name: SBox<&str> = SBox("Ahmed");
     say_hi(&name)
 }
